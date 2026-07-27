@@ -250,10 +250,10 @@ img {
   box-shadow: 0 0 30px var(--glow);
 }
 
-.hero__photo svg {
-  width: 80px;
-  height: 80px;
-  color: var(--text-muted);
+.hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero__name {
@@ -807,9 +807,9 @@ img {
     height: 120px;
   }
 
-  .hero__photo svg {
-    width: 60px;
-    height: 60px;
+  .hero__photo img {
+    width: 100%;
+    height: 100%;
   }
 
   .section__title {
