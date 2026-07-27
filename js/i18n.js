@@ -37,6 +37,8 @@ const translations = {
     'projetos.fluxograma.link': 'Ver Projeto',
     'projetos.oferte.title': 'Oferte — Gestão de Ofertas e Dízimos',
     'projetos.oferte.desc': 'Sistema web para gestão de ofertas e dízimos em igrejas. Cadastro de membros, registro de contribuições, histórico, relatórios e dashboard com indicadores financeiros. Desenvolvido como projeto acadêmico na UECE.',
+    'projetos.odontonexus.title': 'OdontoNexus — Agendamento Odontológico',
+    'projetos.odontonexus.desc': 'Sistema de agendamento odontológico com painel administrativo para a atendente e portal público de autoatendimento para o cliente. Inclui landing page, agendamento em 4 passos, grade de horários e temas personalizáveis.',
 
     // Contato
     'contato.title': 'Vamos nos',
@@ -89,6 +91,8 @@ const translations = {
     'projetos.fluxograma.link': 'View Project',
     'projetos.oferte.title': 'Oferte — Offerings & Tithes Management',
     'projetos.oferte.desc': 'Web system for managing church offerings and tithes. Member registration, contribution tracking, history, reports, and dashboard with financial indicators. Developed as an academic project at UECE.',
+    'projetos.odontonexus.title': 'OdontoNexus — Dental Scheduling',
+    'projetos.odontonexus.desc': 'Dental scheduling system with admin panel for staff and public self-service portal for patients. Includes landing page, 4-step scheduling, time slot grid, and customizable themes.',
 
     // Contato
     'contato.title': "Let's",
