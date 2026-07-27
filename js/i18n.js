@@ -7,7 +7,7 @@ const translations = {
 
     // Hero
     'hero.subtitle': 'Estudante de Sistemas de Informação',
-    'hero.tagline': 'Apaixonado por tecnologia, dados e soluções que fazem a diferença.',
+    'hero.tagline': 'Apaixonado por tecnologia e soluções que fazem a diferença.',
     'hero.btn': 'Ver Projetos',
 
     // Sobre
@@ -61,7 +61,7 @@ const translations = {
 
     // Hero
     'hero.subtitle': 'Information Systems Student',
-    'hero.tagline': 'Passionate about technology, data, and solutions that make a difference.',
+    'hero.tagline': 'Passionate about technology and solutions that make a difference.',
     'hero.btn': 'View Projects',
 
     // Sobre
