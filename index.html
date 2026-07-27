@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silvio | Portfólio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="navbar__logo">Silvio<span>.</span></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+      <li><a href="#projetos" data-i18n="nav.projetos">Projetos</a></li>
+      <li><a href="#contato" data-i18n="nav.contato">Contato</a></li>
+    </ul>
+    <div class="navbar__actions">
+      <button class="lang-toggle" id="langToggle" aria-label="Alternar idioma">
+        <span data-i18n="lang.code">EN</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+      <button class="navbar__menu-btn" id="menuBtn" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <div class="hero__photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <h1 class="hero__name">Silvio</h1>
+      <p class="hero__subtitle" data-i18n="hero.subtitle">Estudante de Sistemas de Informação</p>
+      <p class="hero__tagline" data-i18n="hero.tagline">Apaixonado por tecnologia, dados e soluções que fazem a diferença.</p>
+      <a href="#projetos" class="btn btn--primary">
+        <span data-i18n="hero.btn">Ver Projetos</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="section" id="sobre">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title"><span data-i18n="sobre.title">Sobre</span> <span data-i18n="sobre.title.span" class="text-accent">mim</span></h2>
+        <p class="section__subtitle" data-i18n="sobre.subtitle">Conheça um pouco da minha trajetória e do que me move.</p>
+      </div>
+      <div class="sobre__grid">
+        <div class="sobre__text reveal">
+          <p data-i18n="sobre.p1">
+            Sou estudante de Sistemas de Informação, uma área que une a visão de negócio com a tecnologia para resolver problemas reais. Meu interesse vai desde o desenvolvimento web até a análise de dados e gestão de projetos.
+          </p>
+          <p data-i18n="sobre.p2">
+            Acredito que a tecnologia é uma ferramenta poderosa de transformação, e estou sempre buscando aprender e aplicar o que descubro em projetos práticos.
+          </p>
+          <p data-i18n="sobre.p3">
+            Este portfólio é o espaço onde reúno meus trabalhos, aprendizados e experiências ao longo da minha jornada acadêmica e profissional.
+          </p>
+        </div>
+        <div class="sobre__info reveal">
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="info-card__label" data-i18n="sobre.uni">Universidade</div>
+              <div class="info-card__value" data-i18n="sobre.uni.value">Sistemas de Informação</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div>
+              <div class="info-card__label" data-i18n="sobre.periodo">Período</div>
+              <div class="info-card__value" data-i18n="sobre.periodo.value">Coloque seu período aqui</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <div>
+              <div class="info-card__label" data-i18n="sobre.stack">Stack Principal</div>
+              <div class="info-card__value" data-i18n="sobre.stack.value">HTML, CSS, JavaScript</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </div>
+            <div>
+              <div class="info-card__label" data-i18n="sobre.interesses">Interesses</div>
+              <div class="info-card__value" data-i18n="sobre.interesses.value">Web, Dados, Gestão de Projetos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="section" id="projetos">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title"><span data-i18n="projetos.title">Meus</span> <span data-i18n="projetos.title.span" class="text-accent">Projetos</span></h2>
+        <p class="section__subtitle" data-i18n="projetos.subtitle">Trabalhos e experimentos que construí ao longo da minha jornada.</p>
+      </div>
+      <div class="projetos__grid">
+
+        <!-- PROJETO DESTAQUE: Fluxograma SI -->
+        <div class="projeto-card projeto-card--destaque reveal">
+          <span class="projeto-card__badge" data-i18n="projetos.badge">Projeto Destaque</span>
+          <div class="projeto-card__preview">
+            <img src="fluxograma-si/fluxograma-si.png" alt="Fluxograma de Sistemas de Informação">
+          </div>
+          <div class="projeto-card__body">
+            <h3 class="projeto-card__title" data-i18n="projetos.fluxograma.title">Fluxograma — Sistemas de Informação</h3>
+            <p class="projeto-card__desc" data-i18n="projetos.fluxograma.desc">
+              Visualização interativa da grade curricular do curso de Sistemas de Informação. O fluxograma permite explorar pré-requisitos, créditos e a relação entre disciplinas de forma dinâmica, com destaque de conexões ao clicar em uma matéria.
+            </p>
+            <div class="projeto-card__tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">SVG</span>
+              <span class="tag" data-i18n="projetos.fluxograma.tag1">Visualização de Dados</span>
+            </div>
+            <div class="projeto-card__links">
+              <a href="fluxograma-si/index.html" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                <span data-i18n="projetos.fluxograma.link">Ver Projeto</span>
+              </a>
+              <a href="#" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJETO: Oferte -->
+        <div class="projeto-card reveal">
+          <div class="projeto-card__preview">
+            <img src="assets/oferte-login.png" alt="Tela de login do Oferte">
+          </div>
+          <div class="projeto-card__body">
+            <h3 class="projeto-card__title" data-i18n="projetos.oferte.title">Oferte — Gestão de Ofertas e Dízimos</h3>
+            <p class="projeto-card__desc" data-i18n="projetos.oferte.desc">
+              Sistema web para gestão de ofertas e dízimos em igrejas. Cadastro de membros, registro de contribuições, histórico, relatórios e dashboard com indicadores financeiros. Desenvolvido como projeto acadêmico na UECE.
+            </p>
+            <div class="projeto-card__tags">
+              <span class="tag">Django</span>
+              <span class="tag">Python</span>
+              <span class="tag">DRF</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">HTML/CSS/JS</span>
+            </div>
+            <div class="projeto-card__links">
+              <a href="https://github.com/silviosouza1986/oferte" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title"><span data-i18n="contato.title">Vamos nos</span> <span data-i18n="contato.title.span" class="text-accent">conectar</span></h2>
+        <p class="section__subtitle" data-i18n="contato.subtitle">Estou disponível para conversas, colaborações e oportunidades.</p>
+      </div>
+      <div class="contato__grid">
+        <a href="https://github.com/silviosouza1986" class="contato-btn reveal" target="_blank">
+          <div class="contato-btn__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </div>
+          <span class="contato-btn__label">GitHub</span>
+        </a>
+        <a href="#" class="contato-btn reveal" target="_blank">
+          <div class="contato-btn__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </div>
+          <span class="contato-btn__label">LinkedIn</span>
+        </a>
+      </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__social">
+      <a href="https://github.com/silviosouza1986" aria-label="GitHub" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="LinkedIn" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer__copy" data-i18n-html="footer.copy">&copy; 2026 Silvio. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
