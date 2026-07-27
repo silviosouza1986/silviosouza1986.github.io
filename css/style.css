@@ -451,6 +451,12 @@ img {
 .projeto-card--destaque {
   border-color: var(--color4);
   position: relative;
+  grid-column: 1 / -1;
+}
+
+/* When odd number of projects, featured spans full width */
+.projetos__grid .projeto-card--destaque:nth-last-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .projeto-card--destaque::before {
