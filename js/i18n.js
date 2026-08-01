@@ -39,6 +39,8 @@ const translations = {
     'projetos.oferte.desc': 'Sistema web para gestão de ofertas e dízimos em igrejas. Cadastro de membros, registro de contribuições, histórico, relatórios e dashboard com indicadores financeiros. Desenvolvido como projeto acadêmico na UECE.',
     'projetos.odontonexus.title': 'OdontoNexus — Agendamento Odontológico',
     'projetos.odontonexus.desc': 'Sistema de agendamento odontológico com painel administrativo para a atendente e portal público de autoatendimento para o cliente. Inclui landing page, agendamento em 4 passos, grade de horários e temas personalizáveis.',
+    'projetos.gym.title': 'Gym Template — Site de Academia',
+    'projetos.gym.desc': 'Template genérico de página única para academia, com tema escuro e acento verde-limão. Totalmente auto-contido: imagens locais, contatos e redes sociais com placeholders, animação de contador e layout responsivo.',
 
     // Contato
     'contato.title': 'Vamos nos',
@@ -93,6 +95,8 @@ const translations = {
     'projetos.oferte.desc': 'Web system for managing church offerings and tithes. Member registration, contribution tracking, history, reports, and dashboard with financial indicators. Developed as an academic project at UECE.',
     'projetos.odontonexus.title': 'OdontoNexus — Dental Scheduling',
     'projetos.odontonexus.desc': 'Dental scheduling system with admin panel for staff and public self-service portal for patients. Includes landing page, 4-step scheduling, time slot grid, and customizable themes.',
+    'projetos.gym.title': 'Gym Template — Fitness Website',
+    'projetos.gym.desc': 'Generic single-page template for a gym, with a dark theme and lime-green accent. Fully self-contained: local images, placeholder contacts and social media, counter animation, and responsive layout.',
 
     // Contato
     'contato.title': "Let's",

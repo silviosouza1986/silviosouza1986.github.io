@@ -459,6 +459,11 @@ img {
   grid-column: 1 / -1;
 }
 
+/* Last regular card spans full width to keep the grid symmetric */
+.projetos__grid .projeto-card:not(.projeto-card--destaque):last-child {
+  grid-column: 1 / -1;
+}
+
 .projeto-card--destaque::before {
   content: '';
   position: absolute;
