@@ -784,7 +784,7 @@ Se as respostas não estiverem disponíveis, preservar o texto factual existente
 | E06 — Imagens e performance | CONCLUÍDA* | WebP (≈95% de redução), dimensões/srcset/lazy, fonte com preconnect; *medição Lighthouse pendente |
 | E07 — SEO | CONCLUÍDA* | Metadados/OG/Twitter/favicon/robots/sitemap/404 implementados; *validação em depurador de compartilhamento e indexação pendentes (requerem deploy) |
 | E08 — Fluxograma SI | CONCLUÍDA* | Teclado/aria/tooltip/movimento reduzido implementados; *testes manuais de interação em navegador pendentes |
-| E09 — Testes e publicação | EM ANDAMENTO | `tests/validate.mjs` criado e aprovado (exit 0); publicação e smoke test pendentes do proprietário |
+| E09 — Testes e publicação | CONCLUÍDA* | Publicação autorizada e executada; smoke test do domínio aprovado (7 URLs 200, head/imagens/placeholder conferidos); *Lighthouse/axe no site ao vivo pendentes (limitação de ambiente) |
 
 ### 8.2. Histórico de decisões, desvios e validações
 
@@ -812,6 +812,7 @@ Se as respostas não estiverem disponíveis, preservar o texto factual existente
 | 17/11/2026 | E09 | Automação | PORT-016: criado `tests/validate.mjs` (zero dependências, `node tests/validate.mjs`) cobrindo: balanceamento de tags (index, 404, fluxograma), sincronismo HTML/dicionário PT e completude pt/en, existência de caminhos internos, âncoras com destino, ausência de placeholders e de referências `.png` (exceto og-image/apple-touch-icon), padrões de segredos. Execução final: 8/8 verificações ok, exit 0. Desvio registrado: Nu HTML Checker/axe/Lighthouse indisponíveis no ambiente; o script cobre subconjunto estrutural dessas verificações. | Saída completa de `node tests/validate.mjs` registrada; `echo exit=0` |
 | 17/11/2026 | E09 | Revisão | `git status` limpo por etapa (1 commit por etapa E00–E09 na branch `modernizacao-portifolio`); nenhuma credencial versionada; nenhuma reescrita de histórico; GitHub Pages não reconfigurado. Publicação: requer push da branch e PR/merge na `main` pelo proprietário (deploy from branch, hipótese E00). Smoke test do domínio publicado: pendente até o merge — **não executado**. | `git log --oneline`, `git status` |
 | 17/11/2026 | E09 | Publicação | Branch `modernizacao-portifolio` enviada para `origin` com os 10 commits (E00–E09). GitHub indicou a URL de abertura de PR: `https://github.com/silviosouza1986/silviosouza1986.github.io/pull/new/modernizacao-portifolio`. Publicação no site ocorre após merge na `main` (GitHub Pages, deploy from branch). Smoke test do domínio publicado pendente até o merge. | Saída do `git push -u origin modernizacao-portifolio` |
+| 17/11/2026 | E09 | Publicação | Autorização do proprietário para publicar sem PR ("Ponha no ar"). `git push origin modernizacao-portifolio:main` → `3ee8808..6870199` (fast-forward, sem reescrita). Smoke test do site publicado: `/` 200, `/fluxograma-si/` 200, `/assets/og-image.png` 200, `/robots.txt` 200, `/sitemap.xml` 200, `/404.html` 200, `/favicon.svg` 200; `<head>` publicado contém canonical + OG/Twitter; imagens WebP servidas; placeholder "Coloque seu período" ausente. Local no histórico do `main` atualizado. | `curl -w "%{http_code}"` em 7 URLs; `grep` no HTML publicado |
 
 Adicionar novas linhas sem apagar registros anteriores.
 
@@ -830,4 +831,4 @@ A modernização será considerada concluída somente quando:
 - o proprietário tiver validado conteúdo pessoal e posicionamento profissional;
 - este documento refletir fielmente o que foi implementado, testado, adiado ou bloqueado.
 
-**Estado geral:** `IMPLEMENTAÇÃO LOCAL CONCLUÍDA (E00–E09) — VALIDAÇÕES DE NAVEGADOR E PUBLICAÇÃO PENDENTES`. As etapas marcadas com * têm critérios que exigem navegador/leitor de tela/depurador de compartilhamento, indisponíveis no ambiente de execução; nada foi declarado aprovado sem evidência. Nenhuma melhoria é declarada publicada: o deploy depende de push/merge na `main` pelo proprietário.
+**Estado geral:** `PUBLICADO (E00–E09 CONCLUÍDOS) — VALIDAÇÕES DE NAVEGADOR REMANESCENTES REGISTRADAS COMO PENDÊNCIA`. Site publicado e verificado por smoke test (§8.2). Etapas marcadas com * possuem critérios que exigem navegador/leitor de tela/depurador de compartilhamento; as limitações e as pendências estão em §8.2 e §1.6.
