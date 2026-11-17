@@ -776,15 +776,15 @@ Se as respostas não estiverem disponíveis, preservar o texto factual existente
 | Etapa | Estado | Evidência |
 |---|---|---|
 | E00 — Inventário | BLOQUEADA | Inventário, leitura integral e verificação de links concluídos (§8.2, 17/11/2026); bloqueada apenas para baseline Lighthouse/screenshots/axe — ferramentas indisponíveis no ambiente |
-| E01 — HTML e semântica | EM ANDAMENTO | PORT-001/004/007 implementados e validados; auditoria de leitor de tela e validador oficial pendentes (limitação de ambiente) |
-| E02 — JavaScript e menu | EM ANDAMENTO | PORT-002/003 implementados; testes manuais com storage bloqueado/teclado pendentes (limitação de ambiente) |
-| E03 — Foco, contraste e movimento | EM ANDAMENTO | Correções de contraste, foco e movimento reduzido implementadas; teste manual de zoom/leitor de tela pendente (limitação de ambiente) |
-| E04 — Conteúdo e i18n | EM ANDAMENTO | Decisões do proprietário registradas; placeholder removido, HTML sincronizado com dicionário PT, i18n sem innerHTML; descrições de projetos pendentes de verificação contra repositórios |
-| E05 — Visual e responsividade | EM ANDAMENTO | Tokens semânticos, tipografia fluida, grid simplificado e regras mortas removidas; screenshots por largura pendentes (limitação de ambiente) |
-| E06 — Imagens e performance | EM ANDAMENTO | WebP gerado (95% de redução), dimensões/srcset/lazy aplicados, fonte com preconnect; medição Lighthouse pendente (limitação de ambiente) |
-| E07 — SEO | EM ANDAMENTO | Metadados, OG/Twitter, favicon, robots/sitemap e 404 implementados; validação em depurador de compartilhamento pendente (requer deploy) |
-| E08 — Fluxograma SI | EM ANDAMENTO | Acessibilidade de teclado/foco/tooltip implementada; testes manuais de interação em navegador pendentes (limitação de ambiente) |
-| E09 — Testes e publicação | PENDENTE | Nenhuma alteração realizada |
+| E01 — HTML e semântica | CONCLUÍDA* | PORT-001/004/007 implementados e validados (balanceador de tags, âncoras, caminhos); *leitor de tela e validador oficial pendentes (limitação de ambiente) |
+| E02 — JavaScript e menu | CONCLUÍDA* | PORT-002/003 implementados; *testes manuais com storage bloqueado/teclado em navegador pendentes (limitação de ambiente) |
+| E03 — Foco, contraste e movimento | CONCLUÍDA* | Contraste AA verificado por cálculo em ambos os temas; foco visível e movimento reduzido implementados; *zoom 200%/leitor de tela pendentes |
+| E04 — Conteúdo e i18n | CONCLUÍDA* | Decisões do proprietário registradas; placeholder removido; HTML/PT sincronizados (script de verificação); *descrições de projetos ainda não conferidas contra os repositórios |
+| E05 — Visual e responsividade | CONCLUÍDA* | Tokens semânticos, tipografia fluida, grid simplificado, regras mortas removidas; *screenshots por largura pendentes |
+| E06 — Imagens e performance | CONCLUÍDA* | WebP (≈95% de redução), dimensões/srcset/lazy, fonte com preconnect; *medição Lighthouse pendente |
+| E07 — SEO | CONCLUÍDA* | Metadados/OG/Twitter/favicon/robots/sitemap/404 implementados; *validação em depurador de compartilhamento e indexação pendentes (requerem deploy) |
+| E08 — Fluxograma SI | CONCLUÍDA* | Teclado/aria/tooltip/movimento reduzido implementados; *testes manuais de interação em navegador pendentes |
+| E09 — Testes e publicação | EM ANDAMENTO | `tests/validate.mjs` criado e aprovado (exit 0); publicação e smoke test pendentes do proprietário |
 
 ### 8.2. Histórico de decisões, desvios e validações
 
@@ -809,6 +809,8 @@ Se as respostas não estiverem disponíveis, preservar o texto factual existente
 | 17/11/2026 | E06 | Decisão | PORT-013: `@import` do Google Fonts removido do CSS; fonte passa a ser carregada no `<head>` com `preconnect` (fonts.googleapis + fonts.gstatic) e `display=swap`. Peso 300 removido da requisição (não usado). Auto-hospedagem de Inter variável foi avaliada e descartada nesta rodada: sem `npm`/medição de LCP disponível no ambiente para justificar o benefício (ADR-003); fallback de sistema já presente. Revisitar em futura rodada com medição real (condição do PORT-013). | `git diff` head/css; `grep font-weight` (300 sem uso) |
 | 17/11/2026 | E07 | Implementação | PORT-008/PORT-014: adicionados ao `<head>` meta description (PT), canonical `https://silviosouza1986.github.io/`, `theme-color` (claro/escuro via media query), Open Graph completo (type/url/title/description/image 1200×630 + dimensões + alt + locales pt_BR/en_US), Twitter Card `summary_large_image`, favicon `favicon.svg` (monograma "S." com identidade teal/creme) e `apple-touch-icon.png` (180×180, gerado do SVG). `assets/og-image.png` (1200×630, 268 KB) gerada com ImageMagick a partir da foto de perfil real + nome + "Sistemas de Informação" (informações já publicadas no site; sem elementos fictícios; fonte DejaVu em substituição a Inter — limitação registrada). Criados `robots.txt` (allow all + sitemap) e `sitemap.xml` (2 URLs: raiz e fluxograma-si), validado com `xmllint --noout` = OK. Criado `404.html` no mesmo tema, com link de volta à raiz e `noindex`. | `xmllint --noout sitemap.xml favicon.svg`; `identify assets/og-image.png apple-touch-icon.png`; inspeção visual da OG |
 | 17/11/2026 | E08 | Implementação | PORT-015: correções de acessibilidade comprovadas no fluxograma: cartões agora `tabindex="0"` + `role="button"` + `aria-label` (código, nome, créditos) + `aria-pressed` sincronizado com a seleção; ativação por Enter/Espaço além do clique; tooltip acessível por foco (posicionado no retângulo do cartão) e não apenas por `mouseenter`; estilo `:focus-visible` (outline 3px); `@media (prefers-reduced-motion: reduce)` desativa transições/transform; meta description adicionada. Dados das 39 disciplinas e visual não alterados (Q-09). Fontes 9–10 px nos cartões: mantidas (alteração afetaria layout; registrada como pendência). Identidade visual própria do mini-app mantida (ADR-005/PORT-015: preservar autonomia). | Extração do `<script>` + `node --check` = sintaxe OK; revisão de código |
+| 17/11/2026 | E09 | Automação | PORT-016: criado `tests/validate.mjs` (zero dependências, `node tests/validate.mjs`) cobrindo: balanceamento de tags (index, 404, fluxograma), sincronismo HTML/dicionário PT e completude pt/en, existência de caminhos internos, âncoras com destino, ausência de placeholders e de referências `.png` (exceto og-image/apple-touch-icon), padrões de segredos. Execução final: 8/8 verificações ok, exit 0. Desvio registrado: Nu HTML Checker/axe/Lighthouse indisponíveis no ambiente; o script cobre subconjunto estrutural dessas verificações. | Saída completa de `node tests/validate.mjs` registrada; `echo exit=0` |
+| 17/11/2026 | E09 | Revisão | `git status` limpo por etapa (1 commit por etapa E00–E09 na branch `modernizacao-portifolio`); nenhuma credencial versionada; nenhuma reescrita de histórico; GitHub Pages não reconfigurado. Publicação: requer push da branch e PR/merge na `main` pelo proprietário (deploy from branch, hipótese E00). Smoke test do domínio publicado: pendente até o merge — **não executado**. | `git log --oneline`, `git status` |
 
 Adicionar novas linhas sem apagar registros anteriores.
 
@@ -827,4 +829,4 @@ A modernização será considerada concluída somente quando:
 - o proprietário tiver validado conteúdo pessoal e posicionamento profissional;
 - este documento refletir fielmente o que foi implementado, testado, adiado ou bloqueado.
 
-**Estado geral inicial:** `PLANEJAMENTO — AGUARDANDO E00`. Nenhuma melhoria é declarada implementada ou concluída nesta versão.
+**Estado geral:** `IMPLEMENTAÇÃO LOCAL CONCLUÍDA (E00–E09) — VALIDAÇÕES DE NAVEGADOR E PUBLICAÇÃO PENDENTES`. As etapas marcadas com * têm critérios que exigem navegador/leitor de tela/depurador de compartilhamento, indisponíveis no ambiente de execução; nada foi declarado aprovado sem evidência. Nenhuma melhoria é declarada publicada: o deploy depende de push/merge na `main` pelo proprietário.
