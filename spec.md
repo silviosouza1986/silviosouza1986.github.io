@@ -776,7 +776,7 @@ Se as respostas não estiverem disponíveis, preservar o texto factual existente
 | Etapa | Estado | Evidência |
 |---|---|---|
 | E00 — Inventário | BLOQUEADA | Inventário, leitura integral e verificação de links concluídos (§8.2, 17/11/2026); bloqueada apenas para baseline Lighthouse/screenshots/axe — ferramentas indisponíveis no ambiente |
-| E01 — HTML e semântica | PENDENTE | Nenhuma alteração realizada |
+| E01 — HTML e semântica | EM ANDAMENTO | PORT-001/004/007 implementados e validados; auditoria de leitor de tela e validador oficial pendentes (limitação de ambiente) |
 | E02 — JavaScript e menu | PENDENTE | Nenhuma alteração realizada |
 | E03 — Foco, contraste e movimento | PENDENTE | Nenhuma alteração realizada |
 | E04 — Conteúdo e i18n | PENDENTE | Confirmações do proprietário pendentes |
@@ -797,6 +797,8 @@ Se as respostas não estiverem disponíveis, preservar o texto factual existente
 | 17/11/2026 | E00 | Inspeção | Leitura integral de `index.html` (327 linhas), `css/style.css` (827), `js/main.js` (186), `js/i18n.js` (113), `fluxograma-si/index.html` (730; CSS/JS/dados inline, sem dependências externas). Fluxograma: cartões `div` com handlers `click`/`mouseenter` — sem foco por teclado, tooltip inacessível a teclado/toque, sem `prefers-reduced-motion`, sem link de volta ao portfólio. | Leitura integral dos arquivos |
 | 17/11/2026 | E00 | Links | Verificação HTTP: `github.com/silviosouza1986/gym-template` 200; `…/OdontoNexus` 200; `…/oferte` 200; `github.com/silviosouza1986` 200; `linkedin.com/in/silviosouza1986/` 999 (bloqueio de robô — não indica link quebrado); `silviosouza1986.github.io/` 200; `/fluxograma-si/` 200. Nenhum link quebrado confirmado. | `curl -s -o /dev/null -w "%{http_code}"` em cada URL |
 | 17/11/2026 | E00 | Limitação | Ambiente sem `npm`, sem `pip`, sem navegador instalável automatizável. Baseline de Lighthouse, screenshots por largura e auditoria axe: **NÃO EXECUTADA — motivo: ferramentas indisponíveis no ambiente de execução**. Pendente para execução local pelo proprietário ou CI futura. Também sem Nu HTML Checker oficial; validação estrutural será feita com verificador de balanceamento de tags em `node` (E01) e `xmllint` para XML. | `which node npm python3 pip convert magick xmllint` |
+| 17/11/2026 | E01 | Correção | PORT-001: removidos `</a>` órfão e `</div>` excedente na seção contato (linhas ~300–302). PORT-004: adicionado skip link (`.skip-link` → `#conteudo`), `<main id="conteudo">` envolvendo hero/sobre/projetos/contato, `aria-label="Navegação principal"` no `<nav>`, `aria-hidden="true"` nos 16 SVGs decorativos e no overlay. PORT-007: `rel="noopener noreferrer"` nos 9 links `target="_blank"`. Validação: balanceador de tags em `node` = "OK: todas as tags balanceadas"; âncoras `#conteudo #sobre #projetos #contato` existem; 6 âncoras internas; 5 caminhos de imagem existem. | `node --input-type=module -e` (balanceador); `grep` |
+| 17/11/2026 | E01 | Desvio | Nu HTML Checker oficial não executado (sem npm/navegador). Substituído por verificador de balanceamento de tags próprio + conferência de âncoras/caminhos. Limitação registrada; revalidar com validador oficial quando disponível. | §8.2 linha de 17/11/2026 (limitação de ambiente) |
 
 Adicionar novas linhas sem apagar registros anteriores.
 
