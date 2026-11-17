@@ -1,6 +1,9 @@
 (() => {
   'use strict';
 
+  // Marca que o JS carregou — habilita o reveal apenas neste caso (RF-07 / PORT-006)
+  document.documentElement.classList.add('js');
+
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
 

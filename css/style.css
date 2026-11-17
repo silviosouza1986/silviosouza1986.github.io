@@ -20,10 +20,18 @@
 
   --text-primary: #fdf4b0;
   --text-secondary: #a4dcb9;
-  --text-muted: #6b8a7a;
+  --text-muted: #9db0ba;
 
   --border-color: rgba(91, 206, 191, 0.15);
   --glow: rgba(46, 151, 183, 0.3);
+
+  --link: #32b9be;
+  --accent: #5bcebf;
+  --btn-bg: #5bcebf;
+  --btn-text: #0f1419;
+  --tag-bg: rgba(91, 206, 191, 0.12);
+  --tag-text: #5bcebf;
+  --focus-ring: #fdf4b0;
 
   --radius: 12px;
   --radius-sm: 8px;
@@ -38,10 +46,18 @@
 
   --text-primary: #1a2332;
   --text-secondary: #3d6b5e;
-  --text-muted: #6b8a7a;
+  --text-muted: #4a5f6a;
 
   --border-color: rgba(46, 151, 183, 0.15);
   --glow: rgba(50, 185, 190, 0.2);
+
+  --link: #0b6b82;
+  --accent: #0b6b82;
+  --btn-bg: #0b6b82;
+  --btn-text: #ffffff;
+  --tag-bg: #e3f1f3;
+  --tag-text: #0b5c70;
+  --focus-ring: #0b6b82;
 }
 
 html {
@@ -59,13 +75,20 @@ body {
 }
 
 a {
-  color: var(--color4);
+  color: var(--link);
   text-decoration: none;
   transition: color var(--transition);
 }
 
 a:hover {
-  color: var(--color3);
+  color: var(--accent);
+}
+
+/* Estados de foco perceptíveis e consistentes (PORT-005) */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 img {
@@ -80,7 +103,7 @@ img {
   left: 16px;
   z-index: 2000;
   background: var(--bg-card);
-  color: var(--color3);
+  color: var(--accent);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 10px 16px;
@@ -121,7 +144,7 @@ img {
 }
 
 .navbar__logo span {
-  color: var(--color3);
+  color: var(--accent);
 }
 
 .navbar__links {
@@ -147,7 +170,7 @@ img {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--color4);
+  background: var(--accent);
   transition: width var(--transition);
 }
 
@@ -171,7 +194,7 @@ img {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--color3);
+  color: var(--accent);
   font-size: 1.2rem;
   transition: all var(--transition);
 }
@@ -198,7 +221,7 @@ img {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--color3);
+  color: var(--accent);
   font-size: 0.8rem;
   font-weight: 600;
   font-family: inherit;
@@ -318,26 +341,30 @@ img {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--color4), var(--color5));
-  color: #fff;
+  background: var(--btn-bg);
+  color: var(--btn-text);
 }
 
 .btn--primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--glow);
-  color: #fff;
+  color: var(--btn-text);
+}
+
+.btn--primary span {
+  color: inherit;
 }
 
 .btn--outline {
   background: transparent;
-  border: 2px solid var(--color4);
-  color: var(--color3);
+  border: 2px solid var(--link);
+  color: var(--accent);
 }
 
 .btn--outline:hover {
-  background: rgba(50, 185, 190, 0.1);
+  background: rgba(91, 206, 191, 0.1);
   transform: translateY(-2px);
-  color: var(--color3);
+  color: var(--accent);
 }
 
 /* ========================
@@ -360,7 +387,7 @@ img {
 }
 
 .section__title span {
-  color: var(--color3);
+  color: var(--accent);
 }
 
 .section__subtitle {
@@ -418,11 +445,11 @@ img {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-sm);
-  background: rgba(50, 185, 190, 0.1);
+  background: var(--tag-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color4);
+  color: var(--accent);
   font-size: 1.3rem;
   flex-shrink: 0;
 }
@@ -568,8 +595,8 @@ img {
 }
 
 .tag {
-  background: rgba(50, 185, 190, 0.1);
-  color: var(--color3);
+  background: var(--tag-bg);
+  color: var(--tag-text);
   font-size: 0.75rem;
   font-weight: 500;
   padding: 4px 10px;
@@ -587,7 +614,7 @@ img {
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--color4);
+  color: var(--link);
   padding: 6px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
@@ -595,9 +622,9 @@ img {
 }
 
 .projeto-card__links a:hover {
-  background: rgba(50, 185, 190, 0.1);
-  border-color: var(--color4);
-  color: var(--color3);
+  background: var(--tag-bg);
+  border-color: var(--link);
+  color: var(--accent);
 }
 
 .projeto-card__links svg {
@@ -639,7 +666,7 @@ img {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: rgba(50, 185, 190, 0.1);
+  background: var(--tag-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -648,7 +675,7 @@ img {
 .contato-btn__icon svg {
   width: 28px;
   height: 28px;
-  color: var(--color4);
+  color: var(--accent);
 }
 
 .contato-btn__label {
@@ -691,8 +718,8 @@ img {
 }
 
 .footer__social a:hover {
-  color: var(--color3);
-  border-color: var(--color4);
+  color: var(--accent);
+  border-color: var(--link);
   box-shadow: 0 0 12px var(--glow);
 }
 
@@ -708,16 +735,39 @@ img {
 
 /* ========================
    ANIMAÇÕES SCROLL
+   Conteúdo visível por padrão; o ocultamento só ocorre
+   quando o JS carrega (classe `js` no <html>) — RF-07.
 ======================== */
-.reveal {
+html.js .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.visible {
+html.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Movimento reduzido: desativar transições/animações não essenciais (PORT-006) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ========================
