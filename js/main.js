@@ -5,21 +5,59 @@
   const $$ = (sel) => document.querySelectorAll(sel);
 
   // ========================
+  // STORAGE SEGURO (PORT-002)
+  // Fallback em memória quando localStorage está indisponível/bloqueado.
+  // ========================
+  const memoryStore = new Map();
+  const storageAvailable = (() => {
+    try {
+      const probeKey = '__portfolio_probe__';
+      window.localStorage.setItem(probeKey, '1');
+      window.localStorage.removeItem(probeKey);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  })();
+
+  function getStoredValue(key, allowedValues, fallback) {
+    try {
+      const raw = storageAvailable ? window.localStorage.getItem(key) : memoryStore.get(key);
+      return allowedValues.includes(raw) ? raw : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function setStoredValue(key, value) {
+    try {
+      if (storageAvailable) {
+        window.localStorage.setItem(key, value);
+      } else {
+        memoryStore.set(key, value);
+      }
+    } catch (e) {
+      memoryStore.set(key, value);
+    }
+  }
+
+  // ========================
   // i18n — LANGUAGE
   // ========================
   const LANG_KEY = 'portfolio-lang';
+  const LANGS = ['pt', 'en'];
 
   function detectLanguage() {
-    const saved = localStorage.getItem(LANG_KEY);
+    const saved = getStoredValue(LANG_KEY, LANGS, null);
     if (saved) return saved;
     const lang = navigator.language || navigator.userLanguage || '';
-    const isPtBR = lang.toLowerCase().startsWith('pt') && lang.toLowerCase().includes('br');
-    return isPtBR ? 'pt' : 'en';
+    const isPt = lang.toLowerCase().startsWith('pt');
+    return isPt ? 'pt' : 'en';
   }
 
   function applyLanguage(lang) {
     document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en');
-    localStorage.setItem(LANG_KEY, lang);
+    setStoredValue(LANG_KEY, lang);
 
     $$('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
@@ -47,55 +85,84 @@
   applyLanguage(currentLang);
 
   const langToggle = $('#langToggle');
-  langToggle.addEventListener('click', () => {
-    currentLang = currentLang === 'pt' ? 'en' : 'pt';
-    applyLanguage(currentLang);
-  });
+  if (langToggle) {
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'pt' ? 'en' : 'pt';
+      applyLanguage(currentLang);
+    });
+  }
 
   // ========================
-  // MOBILE MENU
+  // MOBILE MENU (PORT-003)
   // ========================
   const menuBtn = $('#menuBtn');
   const navLinks = $('#navLinks');
   const overlay = $('#mobileOverlay');
 
-  function openMenu() {
-    navLinks.classList.add('open');
-    overlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
+  if (menuBtn && navLinks) {
+    menuBtn.setAttribute('aria-controls', 'navLinks');
+
+    let menuOpen = false;
+
+    function openMenu() {
+      if (menuOpen) return;
+      menuOpen = true;
+      navLinks.classList.add('open');
+      navLinks.setAttribute('aria-hidden', 'false');
+      if (overlay) overlay.classList.add('visible');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu({ returnFocus = false } = {}) {
+      if (!menuOpen) return;
+      menuOpen = false;
+      navLinks.classList.remove('open');
+      navLinks.setAttribute('aria-hidden', 'true');
+      if (overlay) overlay.classList.remove('visible');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      if (returnFocus) menuBtn.focus();
+    }
+
+    navLinks.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen ? closeMenu({ returnFocus: true }) : openMenu();
+    });
+
+    if (overlay) {
+      overlay.addEventListener('click', () => closeMenu({ returnFocus: true }));
+    }
+
+    $$('.navbar__links a').forEach((link) => {
+      link.addEventListener('click', () => closeMenu());
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOpen) {
+        closeMenu({ returnFocus: true });
+      }
+    });
   }
-
-  function closeMenu() {
-    navLinks.classList.remove('open');
-    overlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  menuBtn.addEventListener('click', () => {
-    navLinks.classList.contains('open') ? closeMenu() : openMenu();
-  });
-
-  overlay.addEventListener('click', closeMenu);
-
-  $$('.navbar__links a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
 
   // ========================
   // THEME TOGGLE
   // ========================
   const themeToggle = $('#themeToggle');
   const STORAGE_KEY = 'portfolio-theme';
+  const THEMES = ['dark', 'light'];
 
   function getPreferredTheme() {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = getStoredValue(STORAGE_KEY, THEMES, null);
     if (saved) return saved;
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   }
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(STORAGE_KEY, theme);
+    setStoredValue(STORAGE_KEY, theme);
     updateToggleIcon(theme);
   }
 
@@ -126,7 +193,9 @@
     applyTheme(current === 'dark' ? 'light' : 'dark');
   });
 
-  applyTheme(getPreferredTheme());
+  if (themeToggle) {
+    applyTheme(getPreferredTheme());
+  }
 
   // ========================
   // SCROLL ANIMATIONS

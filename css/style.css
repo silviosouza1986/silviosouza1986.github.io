@@ -751,17 +751,20 @@ img {
     right: -100%;
     width: 280px;
     height: 100vh;
+    height: 100dvh;
     background: var(--bg-surface);
     flex-direction: column;
     padding: 80px 32px 32px;
     gap: 0;
-    transition: right var(--transition);
+    transition: right var(--transition), visibility var(--transition);
+    visibility: hidden;
     z-index: 1001;
     border-left: 1px solid var(--border-color);
   }
 
   .navbar__links.open {
     right: 0;
+    visibility: visible;
   }
 
   .navbar__links li {
