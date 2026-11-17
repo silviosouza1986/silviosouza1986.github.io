@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fluxograma interativo da grade curricular de Sistemas de Informação: pré-requisitos, créditos e conexões entre disciplinas.">
 <title>Fluxograma - Sistemas de Informação</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -148,6 +149,11 @@
     border-color: var(--primary);
   }
 
+  .card:focus-visible {
+    outline: 3px solid var(--primary-dark);
+    outline-offset: 2px;
+  }
+
   .card.active {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(0,168,74,0.3), var(--shadow-hover);
@@ -269,6 +275,17 @@
 
   .tooltip .tt-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
   .tooltip .tt-label { font-size: 11px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .card:hover, .card.active, .card.prereq, .card.dependent {
+      transform: none;
+    }
+  }
 
   @media (max-width: 768px) {
     .card { width: 150px; min-height: 76px; padding: 10px 12px; }
@@ -401,6 +418,10 @@
       if (d.semester === 99) card.classList.add('sem-99');
 
       card.dataset.code = d.code;
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-pressed', 'false');
+      card.setAttribute('aria-label', `${d.code} — ${d.name}, ${d.credits} créditos`);
 
       const prereqNames = d.prereqs.length
         ? d.prereqs.map(c => codeMap[c]?.name || c).join(', ')
@@ -423,8 +444,16 @@
       `;
 
       card.addEventListener('click', () => highlightConnections(d.code));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          highlightConnections(d.code);
+        }
+      });
       card.addEventListener('mouseenter', (e) => showTooltip(e, d));
       card.addEventListener('mouseleave', hideTooltip);
+      card.addEventListener('focus', () => showTooltipForCard(card, d));
+      card.addEventListener('blur', hideTooltip);
 
       return card;
     }
@@ -643,7 +672,10 @@
         l.classList.remove('highlighted', 'incoming', 'outgoing');
         l.setAttribute('marker-end', 'url(#arrowhead)');
       });
-      cards.forEach(c => c.classList.remove('active', 'prereq', 'dependent'));
+      cards.forEach(c => {
+        c.classList.remove('active', 'prereq', 'dependent');
+        c.setAttribute('aria-pressed', 'false');
+      });
       highlighted = false;
       return;
     }
@@ -653,12 +685,17 @@
       l.classList.remove('highlighted', 'incoming', 'outgoing');
       l.setAttribute('marker-end', 'url(#arrowhead)');
     });
-    cards.forEach(c => c.classList.remove('active', 'prereq', 'dependent'));
+    cards.forEach(c => {
+      c.classList.remove('active', 'prereq', 'dependent');
+      c.setAttribute('aria-pressed', 'false');
+    });
 
     const subject = codeMap[code];
     if (!subject) return;
 
-    document.querySelector(`.card[data-code="${code}"]`)?.classList.add('active');
+    const activeCard = document.querySelector(`.card[data-code="${code}"]`);
+    activeCard?.classList.add('active');
+    activeCard?.setAttribute('aria-pressed', 'true');
 
     paths.forEach(l => {
       if (l.dataset.to === code) {
@@ -678,8 +715,7 @@
   const tooltip = document.getElementById('tooltip');
   let tooltipTimeout;
 
-  function showTooltip(e, d) {
-    clearTimeout(tooltipTimeout);
+  function renderTooltipContent(d) {
     const prereqNames = d.prereqs.length
       ? d.prereqs.map(c => codeMap[c]?.name || c).join(', ')
       : 'Nenhum';
@@ -695,17 +731,30 @@
       <div style="margin-top:4px;"><span class="tt-label">PRÉ-REQUISITOS:</span> ${prereqNames}</div>
       <div><span class="tt-label">É REQUISITO PARA:</span> ${depText}</div>
     `;
+  }
 
-    let x = e.clientX + 16;
-    let y = e.clientY + 16;
+  function placeTooltip(x, y) {
     const tw = tooltip.offsetWidth || 280;
     const th = tooltip.offsetHeight || 100;
-    if (x + tw > window.innerWidth - 10) x = e.clientX - tw - 16;
-    if (y + th > window.innerHeight - 10) y = e.clientY - th - 16;
-
-    tooltip.style.left = x + 'px';
-    tooltip.style.top = y + 'px';
+    let px = x, py = y;
+    if (px + tw > window.innerWidth - 10) px = window.innerWidth - tw - 10;
+    if (py + th > window.innerHeight - 10) py = window.innerHeight - th - 10;
+    tooltip.style.left = px + 'px';
+    tooltip.style.top = py + 'px';
     tooltip.classList.add('visible');
+  }
+
+  function showTooltip(e, d) {
+    clearTimeout(tooltipTimeout);
+    renderTooltipContent(d);
+    placeTooltip(e.clientX + 16, e.clientY + 16);
+  }
+
+  function showTooltipForCard(cardEl, d) {
+    clearTimeout(tooltipTimeout);
+    renderTooltipContent(d);
+    const r = cardEl.getBoundingClientRect();
+    placeTooltip(r.left + 8, r.bottom + 8);
   }
 
   function hideTooltip() {
