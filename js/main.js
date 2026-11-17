@@ -65,14 +65,8 @@
     $$('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
       if (translations[lang] && translations[lang][key] !== undefined) {
+        // Apenas texto: nenhuma tradução insere HTML (PORT-011)
         el.textContent = translations[lang][key];
-      }
-    });
-
-    $$('[data-i18n-html]').forEach((el) => {
-      const key = el.getAttribute('data-i18n-html');
-      if (translations[lang] && translations[lang][key] !== undefined) {
-        el.innerHTML = translations[lang][key];
       }
     });
 
