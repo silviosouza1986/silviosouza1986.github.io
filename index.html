@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Silvio | Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -52,7 +55,10 @@
   <section class="hero" id="hero">
     <div class="hero__content">
       <div class="hero__photo">
-        <img src="assets/foto-perfil.png" alt="Silvio — foto de perfil">
+        <img src="assets/foto-perfil-320.webp"
+             srcset="assets/foto-perfil-160.webp 160w, assets/foto-perfil-320.webp 320w"
+             sizes="150px" width="320" height="320"
+             alt="Silvio — foto de perfil" decoding="async" fetchpriority="high">
       </div>
       <h1 class="hero__name">Silvio</h1>
       <p class="hero__subtitle" data-i18n="hero.subtitle">Estudante de Sistemas de Informação</p>
@@ -142,7 +148,11 @@
         <div class="projeto-card projeto-card--destaque reveal">
           <span class="projeto-card__badge" data-i18n="projetos.badge">Projeto Destaque</span>
           <div class="projeto-card__preview">
-            <img src="assets/gym-template.png" alt="Gym Template — site de academia">
+            <img src="assets/gym-template-640.webp"
+                 srcset="assets/gym-template-640.webp 640w, assets/gym-template-1200.webp 1200w"
+                 sizes="(min-width: 1148px) 1052px, calc(100vw - 32px)"
+                 width="640" height="339" loading="lazy" decoding="async"
+                 alt="Gym Template — site de academia">
           </div>
           <div class="projeto-card__body">
             <h3 class="projeto-card__title" data-i18n="projetos.gym.title">Gym Template — Site de Academia</h3>
@@ -168,7 +178,11 @@
         <!-- PROJETO: OdontoNexus -->
         <div class="projeto-card reveal">
           <div class="projeto-card__preview">
-            <img src="assets/odontonexus-landing.png" alt="Landing page do OdontoNexus">
+            <img src="assets/odontonexus-landing-640.webp"
+                 srcset="assets/odontonexus-landing-640.webp 640w, assets/odontonexus-landing-1200.webp 1200w"
+                 sizes="(min-width: 1148px) 514px, (min-width: 848px) calc(50vw - 36px), calc(100vw - 32px)"
+                 width="640" height="320" loading="lazy" decoding="async"
+                 alt="Landing page do OdontoNexus">
           </div>
           <div class="projeto-card__body">
             <h3 class="projeto-card__title" data-i18n="projetos.odontonexus.title">OdontoNexus — Agendamento Odontológico</h3>
@@ -195,7 +209,11 @@
         <!-- PROJETO: Fluxograma SI -->
         <div class="projeto-card reveal">
           <div class="projeto-card__preview">
-            <img src="fluxograma-si/fluxograma-si.png" alt="Fluxograma de Sistemas de Informação">
+            <img src="fluxograma-si/fluxograma-si-640.webp"
+                 srcset="fluxograma-si/fluxograma-si-640.webp 640w, fluxograma-si/fluxograma-si-1200.webp 1200w"
+                 sizes="(min-width: 1148px) 514px, (min-width: 848px) calc(50vw - 36px), calc(100vw - 32px)"
+                 width="640" height="307" loading="lazy" decoding="async"
+                 alt="Fluxograma de Sistemas de Informação">
           </div>
           <div class="projeto-card__body">
             <h3 class="projeto-card__title" data-i18n="projetos.fluxograma.title">Fluxograma — Sistemas de Informação</h3>
@@ -231,7 +249,11 @@
         <!-- PROJETO: Oferte -->
         <div class="projeto-card reveal">
           <div class="projeto-card__preview">
-            <img src="assets/oferte-login.png" alt="Tela de login do Oferte">
+            <img src="assets/oferte-login-640.webp"
+                 srcset="assets/oferte-login-640.webp 640w, assets/oferte-login-1200.webp 1200w"
+                 sizes="(min-width: 1148px) 514px, (min-width: 848px) calc(50vw - 36px), calc(100vw - 32px)"
+                 width="640" height="365" loading="lazy" decoding="async"
+                 alt="Tela de login do Oferte">
           </div>
           <div class="projeto-card__body">
             <h3 class="projeto-card__title" data-i18n="projetos.oferte.title">Oferte — Gestão de Ofertas e Dízimos</h3>
